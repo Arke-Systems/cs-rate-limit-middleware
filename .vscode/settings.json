@@ -1,0 +1,27 @@
+{
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"eslint.useFlatConfig": true,
+	"files.associations": {
+		"yarn.lock": "yaml"
+	},
+	"files.readonlyInclude": {
+		"**/node_modules/**": true,
+		"yarn.lock": true
+	},
+	"javascript.preferences.importModuleSpecifier": "project-relative",
+	"javascript.preferences.importModuleSpecifierEnding": "js",
+	"npm.packageManager": "yarn",
+	"typescript.preferences.importModuleSpecifier": "project-relative",
+	"typescript.preferences.importModuleSpecifierEnding": "js",
+	"typescript.tsc.autoDetect": "off",
+	"typescript.tsdk": "node_modules/typescript/lib"
+}
