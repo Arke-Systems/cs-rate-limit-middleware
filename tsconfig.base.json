@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"composite": false,
+		"declaration": true,
+		"declarationMap": true,
+		"exactOptionalPropertyTypes": true,
+		"forceConsistentCasingInFileNames": true,
+		"importHelpers": true,
+		"inlineSources": false,
+		"removeComments": true,
+		"lib": ["ES2023"],
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"newLine": "LF",
+		"isolatedModules": true,
+		"noEmitOnError": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noUncheckedIndexedAccess": true,
+		// noUnusedLocals and noUnusedParameters are enforced through eslint
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"resolveJsonModule": false,
+		"resolvePackageJsonImports": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "ES2023",
+		"types": ["node"],
+		"useDefineForClassFields": true,
+		"useUnknownInCatchVariables": true
+	}
+}
