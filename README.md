@@ -10,10 +10,21 @@ This project provides middleware for [openapi-fetch][1] that monitors the
 rate limit headers provided by Contentstack and provides a delay/retry
 mechanism to handle rate limiting.
 
+Note: the rate limiter has no knowledge of any external activities that may
+also be impacting the rate limit. It is very possible to still exceed the
+rate limit if other developers or services are also making requests to the
+same organization. This middlware makes a best-effort at throttling its own
+requests and at retrying requests that are rate-limited, but consuming code
+must still expect to encounter an occasional 429: Too Many Requests status.
+
+You can mitigate this by setting `maxRetries` to `Infinity`, but that just
+creates a new problem: the middleware will continue to retry requests
+indefinitely, which may not be desirable.
+
 ## Installation
 
 ```bash
-yarn add @arke-systems/rate-limit-middleware
+yarn add @arke-systems/cs-rate-limit-middleware
 ```
 
 ## Usage
@@ -22,7 +33,7 @@ Add this middleware to your `openapi-fetch` client:
 
 ```ts
 import createClient from "openapi-fetch";
-import RateLimitMiddleware from "@arke-systems/rate-limit-middleware";
+import RateLimitMiddleware from "@arke-systems/cs-rate-limit-middleware";
 import type { paths } from "./cma-openapi-3.yaml";
 
 const client = createClient<paths>({
@@ -72,6 +83,9 @@ behavior:
 
 - `rate-limit-exceeded`: Emitted when the rate limit has been exceeded, and
   all retry attempts have been exhausted.
+
+- `rate-limit-encountered`: Emitted when the rate limit has been exceeded, but
+  the request will be retried.
 
 [1]: https://openapi-ts.pages.dev/openapi-fetch/ "openapi-fetch"
 [2]: https://www.contentstack.com/docs/developers/apis/content-management-api#rate-limiting "Rate Limiting"

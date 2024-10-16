@@ -12,15 +12,23 @@
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.9.0"
   },
-  "name": "@arke-systems/rate-limit-middleware",
+  "exports": {
+    ".": {
+      "types": "./dist/RateLimitMiddleware.d.ts",
+      "default": "./dist/RateLimitMiddleware.js"
+    }
+  },
+  "name": "@arke-systems/cs-rate-limit-middleware",
   "packageManager": "yarn@4.5.0",
-  "peerDependencies": {
-    "openapi-fetch": "*"
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
     "build": "tsc --build ./src/tsconfig.json",
     "lint": "eslint",
     "pretty": "prettier --check ."
   },
-  "type": "module"
+  "type": "module",
+  "version": "1.0.0"
 }
