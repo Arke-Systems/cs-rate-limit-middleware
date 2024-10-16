@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"noEmit": true,
+		"rootDir": ".",
+		"skipLibCheck": true,
+		"outDir": "dist/test"
+	},
+	"exclude": ["node_modules"],
+	"extends": "./tsconfig.base.json",
+	"files": [],
+	"include": ["test/**/*.ts", "src/**/*.test.ts"],
+	"references": [{ "path": "src/tsconfig.json" }]
+}

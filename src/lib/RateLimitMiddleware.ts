@@ -1,6 +1,6 @@
 import EventEmitter from "node:events";
-import TimePeriod from "./lib/TimePeriod.js";
-import parseValue from "./lib/parseValue.js";
+import TimePeriod from "./TimePeriod.js";
+import parseValue from "./parseValue.js";
 
 const defaultMaxRetries = 10;
 const tooManyRequests = 429;
