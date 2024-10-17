@@ -19,6 +19,7 @@
       "default": "./dist/cs-rate-limit-middleware/index.js"
     }
   },
+  "license": "UNLICENSED",
   "name": "@arke-systems/cs-rate-limit-middleware",
   "packageManager": "yarn@4.5.0",
   "publishConfig": {
