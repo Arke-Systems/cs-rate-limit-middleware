@@ -11,6 +11,17 @@
 			"problemMatcher": [],
 			"label": "Build",
 			"detail": "tsc --build ./src/tsconfig.json"
+		},
+		{
+			"type": "npm",
+			"script": "test",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"label": "Test",
+			"detail": "vitest"
 		}
 	]
 }
