@@ -54,6 +54,34 @@ middleware will emit a `rate-limit-exceeded` event, and return the response
 as-is. Consuming code must still handle the 429: Too Many Requests status code
 in this case.
 
+### Clearing the Timeout
+
+Because the middleware uses `setTimeout` to delay the retry, it is possible
+for the middleware to keep an active timer after the Node event loop has
+otherwise halted. This may affect short-running applications, such as scripts,
+where it may introduce a delay in the application's exit.
+
+This can be mitigated by clearing the timeout when the application is shutting
+down. The middlewear uses the `Disposable` interface to provide this
+functionality:
+
+```ts
+// The timeout will be cleared once `rateLimitMiddleware` is out of scope!
+// Suitable for applications that manage the client near the top-level.
+await using rateLimitMiddleware = new RateLimitMiddleware();
+client.use(rateLimitMiddleware);
+```
+
+Or
+
+```ts
+// The timeout will be cleared once `rateLimitMiddleware` is disposed!
+// Suitable for applications that manage the client more dynamically.
+const rateLimitMiddleware = new RateLimitMiddleware();
+client.use(rateLimitMiddleware);
+await rateLimitMiddleware[Symbol.asyncDispose]();
+```
+
 ## Options
 
 The `RateLimitMiddleware` constructor accepts an options object with the

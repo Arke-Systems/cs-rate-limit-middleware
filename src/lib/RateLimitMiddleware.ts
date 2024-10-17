@@ -5,10 +5,15 @@ import parseValue from "./parseValue.js";
 const defaultMaxRetries = 10;
 const tooManyRequests = 429;
 
-export default class RateLimitMiddleware extends EventEmitter<{
-	"rate-limit-encountered": [Request, Response];
-	"rate-limit-exceeded": [Request, Response];
-}> {
+interface EventMap {
+	readonly "rate-limit-encountered": [Request, Response];
+	readonly "rate-limit-exceeded": [Request, Response];
+}
+
+export default class RateLimitMiddleware
+	extends EventEmitter<EventMap>
+	implements AsyncDisposable
+{
 	readonly #timePeriod: TimePeriod;
 	readonly #maxRetries: number;
 
@@ -48,6 +53,10 @@ export default class RateLimitMiddleware extends EventEmitter<{
 		}
 
 		return response;
+	}
+
+	public async [Symbol.asyncDispose]() {
+		return this.#timePeriod[Symbol.asyncDispose]();
 	}
 
 	#updateRateLimit(headers: Headers) {
