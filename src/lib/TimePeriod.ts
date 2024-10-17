@@ -1,4 +1,4 @@
-import { setTimeout as delay } from 'node:timers/promises';
+import { setTimeout as delay } from "node:timers/promises";
 
 // Rate limit time period is documented as one second, see:
 //
@@ -8,7 +8,7 @@ const timePeriod = 1000;
 
 const timePeriods = new Map<string, TimePeriod>();
 
-export default class TimePeriod {
+export default class TimePeriod implements AsyncDisposable {
 	limit = 1;
 	remaining = 1;
 
@@ -20,7 +20,7 @@ export default class TimePeriod {
 		// Prevent public instantiation
 	}
 
-	static forScope(scopeId: string) {
+	public static forScope(scopeId: string) {
 		const existing = timePeriods.get(scopeId);
 
 		if (existing) {
@@ -32,7 +32,7 @@ export default class TimePeriod {
 		return created;
 	}
 
-	async clear() {
+	public async [Symbol.asyncDispose]() {
 		const tick = this.#tick;
 
 		this.remaining = this.limit;
@@ -43,7 +43,7 @@ export default class TimePeriod {
 		return tick;
 	}
 
-	async waitForAvailability() {
+	public async waitForAvailability() {
 		while (this.remaining <= 0) {
 			await (this.#tick ?? delay(timePeriod));
 		}
