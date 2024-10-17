@@ -1,4 +1,4 @@
-# Rate Limit Middleware
+# Rate Limiting Middleware for Contentstack Rest API Applications
 
 Contentstack imposes [rate limits][2] on the Content Management API.
 

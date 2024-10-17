@@ -3,7 +3,11 @@ import globals from "globals";
 import js from "@eslint/js";
 import prettier from "eslint-config-prettier";
 
-const tsProjects = ["./src/tsconfig.json"];
+const tsProjects = [
+	"./tsconfig.json",
+	"./src/tsconfig.json",
+	"./tsconfig.test.json",
+];
 
 /**
  * @type {import('eslint').Linter.Config[]}

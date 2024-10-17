@@ -1,6 +1,6 @@
-import { randomUUID } from 'node:crypto';
-import { afterEach, beforeAll, expect, test, vi } from 'vitest';
-import TimePeriod from './TimePeriod.js';
+import { randomUUID } from "node:crypto";
+import { afterEach, beforeAll, expect, test, vi } from "vitest";
+import TimePeriod from "./TimePeriod.js";
 
 const shortDelay = 10;
 const longDelay = 1500;
@@ -13,7 +13,7 @@ afterEach(() => {
 	vi.clearAllTimers();
 });
 
-test('available requests should be allowed without delay', async () => {
+test("available requests should be allowed without delay", async () => {
 	// Arrange
 	const timePeriod = TimePeriod.forScope(randomUUID());
 	timePeriod.limit = 10;
@@ -27,7 +27,7 @@ test('available requests should be allowed without delay', async () => {
 	expect(task.completed).toBe(true);
 });
 
-test('should delay when remaining requests are exhausted', async () => {
+test("should delay when remaining requests are exhausted", async () => {
 	// Arrange
 	const timePeriod = TimePeriod.forScope(randomUUID());
 	timePeriod.limit = 1;
@@ -41,7 +41,7 @@ test('should delay when remaining requests are exhausted', async () => {
 	expect(task.completed).toBe(false);
 });
 
-test('waiting for availability should consume availability', () => {
+test("waiting for availability should consume availability", () => {
 	// Arrange
 	const timePeriod = TimePeriod.forScope(randomUUID());
 	timePeriod.limit = 1;
@@ -54,7 +54,7 @@ test('waiting for availability should consume availability', () => {
 	expect(timePeriod.remaining).toBe(0);
 });
 
-test('should reset remaining requests after the time period', async () => {
+test("should reset remaining requests after the time period", async () => {
 	// Arrange
 	const timePeriod = TimePeriod.forScope(randomUUID());
 	timePeriod.limit = 5;
@@ -68,7 +68,7 @@ test('should reset remaining requests after the time period', async () => {
 	expect(timePeriod.remaining).toBe(timePeriod.limit);
 });
 
-test('should handle multiple simultaneous requests correctly', async () => {
+test("should handle multiple simultaneous requests correctly", async () => {
 	// Arrange
 	const timePeriod = TimePeriod.forScope(randomUUID());
 	timePeriod.limit = 2;

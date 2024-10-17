@@ -1,0 +1,9 @@
+.editorconfig
+.gitattributes
+.vscode/
+build/
+dist/test/
+eslint.config.js
+test/
+tsconfig.json
+tsconfig.test.json
