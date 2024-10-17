@@ -28,7 +28,9 @@
   },
   "scripts": {
     "build": "tsc --build ./tsconfig.json",
+    "clean": "node ./build/clean.js",
     "lint": "eslint",
+    "prepack": "yarn clean && yarn build",
     "pretty": "prettier --check .",
     "test": "vitest"
   },
