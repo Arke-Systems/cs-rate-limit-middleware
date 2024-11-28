@@ -1,5 +1,3 @@
-import { setTimeout as delay } from "node:timers/promises";
-
 // Rate limit time period is documented as one second, see:
 //
 // https://www.contentstack.com
@@ -45,16 +43,15 @@ export default class TimePeriod implements AsyncDisposable {
 
 	public async waitForAvailability() {
 		while (this.remaining <= 0) {
-			await (this.#tick ?? delay(timePeriod));
+			await (this.#tick ??= this.#createTick());
 		}
 
 		this.remaining -= 1;
+		this.#tick ??= this.#createTick();
+	}
 
-		if (this.#tick) {
-			return;
-		}
-
-		this.#tick = new Promise<void>((resolve) => {
+	async #createTick() {
+		return new Promise<void>((resolve) => {
 			this.#resolveTick = resolve;
 
 			this.#timeout = setTimeout(() => {
