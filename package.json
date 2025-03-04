@@ -3,15 +3,15 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.15.0",
-    "@types/node": "^22.10.0",
-    "eslint": "^9.15.0",
-    "eslint-config-prettier": "^9.1.0",
-    "globals": "^15.12.0",
-    "prettier": "^3.4.1",
-    "typescript": "^5.7.2",
-    "typescript-eslint": "^8.16.0",
-    "vitest": "^2.1.6"
+    "@eslint/js": "^9.21.0",
+    "@types/node": "^22.13.9",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "globals": "^15.15.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "vitest": "^3.0.7"
   },
   "exports": {
     ".": {
@@ -21,7 +21,7 @@
   },
   "license": "MIT",
   "name": "@arke-systems/cs-rate-limit-middleware",
-  "packageManager": "yarn@4.5.3",
+  "packageManager": "yarn@4.7.0",
   "publishConfig": {
     "access": "restricted",
     "registry": "https://npm.pkg.github.com"
@@ -35,5 +35,5 @@
     "test": "vitest"
   },
   "type": "module",
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
