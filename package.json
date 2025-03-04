@@ -22,10 +22,6 @@
   "license": "MIT",
   "name": "@arke-systems/cs-rate-limit-middleware",
   "packageManager": "yarn@4.7.0",
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "build": "tsc --build ./tsconfig.json",
     "clean": "node ./build/clean.js",
