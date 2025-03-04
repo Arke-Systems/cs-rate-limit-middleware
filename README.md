@@ -62,7 +62,7 @@ otherwise halted. This may affect short-running applications, such as scripts,
 where it may introduce a delay in the application's exit.
 
 This can be mitigated by clearing the timeout when the application is shutting
-down. The middlewear uses the `Disposable` interface to provide this
+down. The middleware uses the `Disposable` interface to provide this
 functionality:
 
 ```ts
@@ -97,10 +97,7 @@ following optional properties:
 
 ```ts
 client.use(
-  new RateLimitMiddleware({
-    maxRetries: 5,
-    scope: "my-organization",
-  }),
+  new RateLimitMiddleware({ maxRetries: 5, scope: "my-organization" }),
 );
 ```
 
