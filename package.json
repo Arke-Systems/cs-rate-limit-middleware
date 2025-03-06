@@ -10,11 +10,11 @@
     "@types/node": "^22.13.9",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.2",
-    "globals": "^15.15.0",
+    "globals": "^16.0.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.0",
-    "vitest": "^3.0.7"
+    "vitest": "^3.0.8"
   },
   "exports": {
     ".": {
@@ -31,9 +31,10 @@
     "clean": "node ./build/clean.js",
     "lint": "eslint",
     "prepack": "yarn clean && yarn build",
+    "prepublish": "yarn test run --no-api --bail 1",
     "pretty": "prettier --check .",
     "test": "vitest"
   },
   "type": "module",
-  "version": "1.0.3"
+  "version": "1.0.4"
 }
