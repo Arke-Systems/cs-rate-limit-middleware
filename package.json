@@ -30,8 +30,7 @@
     "build": "tsc --build ./tsconfig.json",
     "clean": "node ./build/clean.js",
     "lint": "eslint",
-    "prepack": "yarn clean && yarn build",
-    "prepublish": "yarn test run --no-api --bail 1",
+    "prepack": "yarn clean && yarn build && yarn test run --no-api --bail 1",
     "pretty": "prettier --check .",
     "test": "vitest"
   },
