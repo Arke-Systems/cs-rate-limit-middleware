@@ -15,18 +15,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare Corepack
-        run: corepack enable
-
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: yarn
-          cache-dependency-path: ./yarn.lock
-
-      - name: Install dependencies
-        run: yarn install --immutable
+      - name: Prepare dependencies
+        uses: ./.github/actions/prepare-dependencies
 
       - name: Check white-space
         run: yarn pretty

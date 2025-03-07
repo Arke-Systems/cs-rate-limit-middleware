@@ -8,37 +8,29 @@ on:
 jobs:
   publish-package:
     runs-on: ubuntu-latest
-    environment: dev
+
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare Corepack
-        run: corepack enable
+      - name: Prepare dependencies
+        uses: ./.github/actions/prepare-dependencies
 
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: yarn
-          cache-dependency-path: ./yarn.lock
-          registry-url: https://registry.npmjs.org
-          scope: "@arke-systems"
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-        # Based on https://github.com/actions/setup-node/issues/942
-      - name: Authentication
-        run: 'echo npmAuthToken: "$NPM_AUTH_TOKEN" >> ./.yarnrc.yml'
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.PUBLISH_PACKAGES_NPM }}
-
-      - name: Build project
-        run: yarn build
-
-      - name: Publish CLI package
+      - name: Publish package to NPM
+        shell: bash
         run: yarn npm publish --access public
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.PUBLISH_PACKAGES_NPM }}
+          YARN_NPM_PUBLISH_REGISTRY: https://registry.npmjs.org
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.PUBLISH_PACKAGES_NPM }}
+
+      - name: Publish package to GitHub
+        shell: bash
+        run: yarn npm publish
+        env:
+          YARN_NPM_PUBLISH_REGISTRY: https://npm.pkg.github.com
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
